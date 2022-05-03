@@ -1,0 +1,20 @@
+{
+  "name": "fop-project-brawlstarslovers",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "farming-game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ju-nmd2021/fop-project-brawlstarslovers.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ju-nmd2021/fop-project-brawlstarslovers/issues"
+  },
+  "homepage": "https://github.com/ju-nmd2021/fop-project-brawlstarslovers#readme"
+}
