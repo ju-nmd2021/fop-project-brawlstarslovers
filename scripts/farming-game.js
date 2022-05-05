@@ -5,8 +5,6 @@ import { Garden } from "./garden.js";
 let sketch = new p5();
 let grass;
 let farmerGraphicTest;
-// let aniFrames = 0;
-// let currentFrame = 0;
 
 function preload() {
   grass = loadImage("assets/grass.png");
@@ -33,8 +31,8 @@ function draw() {
   let tiles = new Garden();
   tiles.drawTiles(14, 9, 60);
 
-  image(farmerGraphicTest[0], 300, 300);
-  rect(300, 300, 30, 30);
+  image(farmerGraphicTest[0], mouseX, mouseY);
+  ellipse(300, 300, 30);
 }
 
 window.draw = draw;
