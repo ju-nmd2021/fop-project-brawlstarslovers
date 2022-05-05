@@ -20,7 +20,6 @@ function setup() {
   let canvas = sketch.createCanvas(1280, 720);
   canvas.parent("container");
   background("red");
-  image(grass, 0, 0);
   //   farmerGraphicTest.resize(160, 160);
   console.log(farmerGraphicTest[1].width);
 }
@@ -28,6 +27,7 @@ function setup() {
 window.setup = setup;
 
 function draw() {
+  image(grass, 0, 0);
   let tiles = new Garden();
   tiles.drawTiles(14, 9, 60);
 
