@@ -9,6 +9,7 @@ let animationTopPlayerTwo;
 
 function preload() {
   grass = loadImage("assets/grass.png");
+  // Initialization of all animations
   animationTopPlayerOne = [
     loadImage("assets/blue-man-running1.png"),
     loadImage("assets/blue-man-running2.png"),
@@ -43,9 +44,9 @@ function draw() {
   PlayerOne.movePlayer();
 
 // -- 
-// These two if's are responsible for animations
+// These two if's are responsible for  all animations
 // Since we decided on having 2 frames for all animations, we can set global index (line 27)
-// And them change it twice a frame (this if what following if statemnts do)
+// And then change it twice a frame (this if what following if statemnts do)
 
   if (frameCount % 15 == 0) {
     index = 0;
