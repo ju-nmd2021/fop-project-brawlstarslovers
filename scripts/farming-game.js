@@ -1,6 +1,6 @@
 // Tasks:
 // Resize background
-
+import { Player } from "./player.js";
 import { Garden } from "./garden.js";
 let sketch = new p5();
 let grass;
@@ -20,19 +20,30 @@ function setup() {
   let canvas = sketch.createCanvas(1280, 720);
   canvas.parent("container");
   background("red");
-  //   farmerGraphicTest.resize(160, 160);
-  console.log(farmerGraphicTest[1].width);
+  image(grass, 0, 0);
 }
 
 window.setup = setup;
+let index = 0;
 
+let PlayerOne = new Player(500, 500);
 function draw() {
-  image(grass, 0, 0);
   let tiles = new Garden();
   tiles.drawTiles(14, 9, 60);
+  
+  PlayerOne.animatePlayer(farmerGraphicTest, index);
 
-  image(farmerGraphicTest[0], mouseX, mouseY);
-  ellipse(300, 300, 30);
+// -- 
+// These two if's are responsible for animations
+// Since we decided on having 2 frames for all animations, we can set global index (line 27)
+// And them change it twice a frame (this if what following if statemnts do)
+  if (frameCount % 15 == 0) {
+    index = 0;
+}
+  if (frameCount % 30 == 0) {
+    index = 1;
+}
+// --
 }
 
 window.draw = draw;
