@@ -2,6 +2,7 @@
 // Resize background
 import { Player } from "./player.js";
 import { Garden } from "./garden.js";
+
 let sketch = new p5();
 let grass;
 let animationTopPlayerOne;
@@ -33,6 +34,7 @@ let index = 0;
 // You can see what do these keys stand for in player.js
 let PlayerOne = new Player(500, 500, 68, 3, 65, 87, 83);
 let PlayerTwo = new Player(100, 100, 39, 3, 37, 38, 40);
+
 function draw() {
   image(grass, 0, 0);
   let tiles = new Garden();
@@ -43,18 +45,18 @@ function draw() {
   PlayerTwo.movePlayer();
   PlayerOne.movePlayer();
 
-// -- 
-// These two if's are responsible for  all animations
-// Since we decided on having 2 frames for all animations, we can set global index (line 27)
-// And then change it twice a frame (this if what following if statemnts do)
+  // --
+  // These two if's are responsible for  all animations
+  // Since we decided on having 2 frames for all animations, we can set global index (line 27)
+  // And then change it twice a frame (this if what following if statemnts do)
 
   if (frameCount % 15 == 0) {
     index = 0;
-}
+  }
   if (frameCount % 30 == 0) {
     index = 1;
-}
-// --
+  }
+  // --
 }
 
 window.draw = draw;

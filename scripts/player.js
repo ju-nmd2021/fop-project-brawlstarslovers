@@ -1,6 +1,14 @@
-
 class Player {
-  constructor(playerX, playerY, keyRight,  playerSpeed, keyLeft, keyTop, keyBottom) {
+  // Constructor receives arguments from created instances of classes (line 33 and line 44 of farming-game.js)
+  constructor(
+    playerX,
+    playerY,
+    keyRight,
+    playerSpeed,
+    keyLeft,
+    keyTop,
+    keyBottom
+  ) {
     this.playerX = playerX;
     this.playerY = playerY;
     this.keyRight = keyRight;
@@ -26,6 +34,6 @@ class Player {
       this.playerY += this.playerSpeed;
     }
   }
-};
+}
 
 export { Player };
