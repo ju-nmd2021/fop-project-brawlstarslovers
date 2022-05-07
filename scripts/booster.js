@@ -4,11 +4,11 @@ class Booster {
     this.posY = posY;
     this.type = type;
     this.isActive = true;
-    this.strawberry = loadImage("assets/strawberry.png");
+    this.star = loadImage("assets/star.png");
   }
   createBooster() {
     if(this.isActive) {
-    image(this.strawberry, this.posX, this.posY);
+    image(this.star, this.posX, this.posY);
     this.posY -= 3;
     }
   }
