@@ -39,8 +39,11 @@ let index = 0;
 let PlayerOne = new Player(500, 500, 68, 3, 65, 87, 83);
 let PlayerTwo = new Player(100, 100, 39, 3, 37, 38, 40);
 
-let BoosterFruit = new Booster( 281, 320, 'speed');
+let BoosterFruit;
+setInterval(() => {BoosterFruit = new Booster( 
+  Math.floor(Math.random() * (1000 - 100 + 1)) + 100, 720, 'speed');}, 5000);
 function draw() {
+  
   image(grass, 0, 0);
   let tiles = new Garden();
   tiles.drawTiles(14, 9, 60);
@@ -50,10 +53,11 @@ function draw() {
   PlayerTwo.movePlayer();
   PlayerOne.movePlayer();
 
-
+  if (BoosterFruit) {
   BoosterFruit.createBooster();
   BoosterFruit.checkPlayerCollision(PlayerOne.playerX, PlayerOne.playerY, PlayerOne);
   BoosterFruit.checkPlayerCollision(PlayerTwo.playerX, PlayerTwo.playerY, PlayerTwo);
+  }
   // --
   // These two if's are responsible for  all animations
   // Since we decided on having 2 frames for all animations, we can set global index (line 27)

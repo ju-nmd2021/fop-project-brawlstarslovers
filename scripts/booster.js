@@ -9,6 +9,7 @@ class Booster {
   createBooster() {
     if(this.isActive) {
     image(this.strawberry, this.posX, this.posY);
+    this.posY -= 3;
     }
   }
   checkPlayerCollision(playerX, playerY, player) {
