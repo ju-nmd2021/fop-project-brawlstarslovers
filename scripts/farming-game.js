@@ -7,11 +7,21 @@ import { Booster } from "./booster.js";
 let sketch = new p5();
 
 let grass;
-let strawberry;
+let randomX = Math.floor(Math.random() * (1000 - 100 + 1));
+let boostersList = ["prison", "speed"];
+let priorBooster;
+let randomBoost;
+
+function getRandomBooster() {
+  while (randomBoost == priorBooster) {
+    randomBoost = boostersList[Math.floor(Math.random()*boostersList.length)];
+  }
+  priorBooster = randomBoost;
+  return randomBoost;
+}
 
 let animationTopPlayerOne;
 let animationTopPlayerTwo;
-let BoosterStrawberry;
 
 function preload() {
   grass = loadImage("assets/grass.png");
@@ -28,7 +38,6 @@ function preload() {
 
 window.preload = preload;
 
-
 function setup() {
   let canvas = sketch.createCanvas(1280, 720);
   canvas.parent("container");
@@ -40,10 +49,17 @@ let PlayerOne = new Player(500, 500, 68, 3, 65, 87, 83);
 let PlayerTwo = new Player(100, 100, 39, 3, 37, 38, 40);
 
 let BoosterFruit;
-setInterval(() => {BoosterFruit = new Booster( 
-  Math.floor(Math.random() * (1000 - 100 + 1)) + 100, 720, 'prison', PlayerOne, PlayerTwo);}, 5000);
+setInterval(() => {
+  BoosterFruit = new Booster(
+    randomX + 100,
+    720,
+    getRandomBooster(),
+    PlayerOne,
+    PlayerTwo
+  );
+}, 5000);
 function draw() {
-  
+  // 
   image(grass, 0, 0);
   let tiles = new Garden();
   tiles.drawTiles(14, 9, 60);
@@ -56,9 +72,17 @@ function draw() {
   PlayerTwo.EscapeFromPrison();
 
   if (BoosterFruit) {
-  BoosterFruit.createBooster();
-  BoosterFruit.checkPlayerCollision(PlayerOne.playerX, PlayerOne.playerY, PlayerOne);
-  BoosterFruit.checkPlayerCollision(PlayerTwo.playerX, PlayerTwo.playerY, PlayerTwo);
+    BoosterFruit.createBooster();
+    BoosterFruit.checkPlayerCollision(
+      PlayerOne.playerX,
+      PlayerOne.playerY,
+      PlayerOne
+    );
+    BoosterFruit.checkPlayerCollision(
+      PlayerTwo.playerX,
+      PlayerTwo.playerY,
+      PlayerTwo
+    );
   }
   // --
   // These two if's are responsible for  all animations
