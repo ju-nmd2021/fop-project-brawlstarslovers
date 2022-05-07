@@ -41,7 +41,7 @@ let PlayerTwo = new Player(100, 100, 39, 3, 37, 38, 40);
 
 let BoosterFruit;
 setInterval(() => {BoosterFruit = new Booster( 
-  Math.floor(Math.random() * (1000 - 100 + 1)) + 100, 720, 'speed');}, 5000);
+  Math.floor(Math.random() * (1000 - 100 + 1)) + 100, 720, 'prison', PlayerOne, PlayerTwo);}, 5000);
 function draw() {
   
   image(grass, 0, 0);
@@ -52,6 +52,8 @@ function draw() {
   PlayerTwo.animatePlayer(animationTopPlayerTwo, index);
   PlayerTwo.movePlayer();
   PlayerOne.movePlayer();
+  PlayerOne.EscapeFromPrison();
+  PlayerTwo.EscapeFromPrison();
 
   if (BoosterFruit) {
   BoosterFruit.createBooster();
