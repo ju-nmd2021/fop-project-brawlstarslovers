@@ -2,11 +2,16 @@
 // Resize background
 import { Player } from "./player.js";
 import { Garden } from "./garden.js";
+import { Booster } from "./booster.js";
 
 let sketch = new p5();
+
 let grass;
+let strawberry;
+
 let animationTopPlayerOne;
 let animationTopPlayerTwo;
+let BoosterStrawberry;
 
 function preload() {
   grass = loadImage("assets/grass.png");
@@ -23,28 +28,32 @@ function preload() {
 
 window.preload = preload;
 
+
 function setup() {
   let canvas = sketch.createCanvas(1280, 720);
   canvas.parent("container");
-  background("red");
 }
-
 window.setup = setup;
 let index = 0;
 // You can see what do these keys stand for in player.js
 let PlayerOne = new Player(500, 500, 68, 3, 65, 87, 83);
 let PlayerTwo = new Player(100, 100, 39, 3, 37, 38, 40);
 
+let BoosterFruit = new Booster( 281, 320, 'speed');
 function draw() {
   image(grass, 0, 0);
   let tiles = new Garden();
   tiles.drawTiles(14, 9, 60);
+
   PlayerOne.animatePlayer(animationTopPlayerOne, index);
   PlayerTwo.animatePlayer(animationTopPlayerTwo, index);
-
   PlayerTwo.movePlayer();
   PlayerOne.movePlayer();
 
+
+  BoosterFruit.createBooster();
+  BoosterFruit.checkPlayerCollision(PlayerOne.playerX, PlayerOne.playerY, PlayerOne);
+  BoosterFruit.checkPlayerCollision(PlayerTwo.playerX, PlayerTwo.playerY, PlayerTwo);
   // --
   // These two if's are responsible for  all animations
   // Since we decided on having 2 frames for all animations, we can set global index (line 27)
