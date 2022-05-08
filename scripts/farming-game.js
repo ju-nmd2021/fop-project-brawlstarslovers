@@ -24,7 +24,7 @@ let animationTopPlayerOne;
 let animationTopPlayerTwo;
 
 function preload() {
-  grass = loadImage("assets/grass.png");
+  grass = loadImage("../assets/grass2.png");
   // Initialization of all animations
   animationTopPlayerOne = [
     loadImage("assets/blue-man-running1.png"),
