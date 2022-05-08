@@ -44,7 +44,7 @@ function setup() {
 }
 window.setup = setup;
 let index = 0;
-// You can see what do these keys stand for in player.js
+// You can see what do these arguments stand for in player.js
 let PlayerOne = new Player(500, 500, 68, 3, 65, 87, 83);
 let PlayerTwo = new Player(100, 100, 39, 3, 37, 38, 40);
 
@@ -59,7 +59,6 @@ setInterval(() => {
   );
 }, 5000);
 function draw() {
-  // 
   image(grass, 0, 0);
   let tiles = new Garden();
   tiles.drawTiles(14, 9, 60);

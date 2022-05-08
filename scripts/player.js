@@ -39,6 +39,10 @@ class Player {
   }
   EscapeFromPrison() {
     if (this.isImprisoned === true) {
+      textStyle(BOLD);
+      fill('white');
+      textSize(32);
+      text('You are imprisoned! Smash SPACEBAR to escape!', 260, 700);
       image(this.prison, 605, 10);
       if(keyIsDown(32) && this.spaceBarsCounter < 30) {
         this.spaceBarsCounter += 1;
@@ -46,7 +50,6 @@ class Player {
           this.playerSpeed = 3;
           this.spaceBarsCounter = 0;
           this.isImprisoned = false;
-          console.log('You are free');
         }
       }
     }

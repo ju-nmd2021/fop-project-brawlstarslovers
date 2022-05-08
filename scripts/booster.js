@@ -8,10 +8,12 @@ class Booster {
     this.isActive = true;
     this.spaceBarsCounter = 0;
     this.star = loadImage("assets/star.png");
+    this.assets = {'speed': loadImage("../assets/speed.png"),
+                   'prison': loadImage("../assets/star.png")};
   }
   createBooster() {
     if(this.isActive) {
-    image(this.star, this.posX, this.posY);
+    image(this.assets[this.type], this.posX, this.posY);
     this.posY -= 3;
     }
   }
