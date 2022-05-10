@@ -19,6 +19,7 @@ class Booster {
   }
   checkPlayerCollision(playerX, playerY, player) {
     let targetEnemy = player === this.playerOne ? this.playerTwo : this.playerOne;
+    let targetUser = player === this.playerOne ? this.playerOne : this.playerTwo;
     if (
       playerX <= this.posX + 40 &&
       playerX >= this.posX - 40 &&
@@ -28,18 +29,20 @@ class Booster {
     ) {
       if (this.type == "speed") {
         player.playerSpeed = 6;
-        setTimeout(() => {player.playerSpeed = 3}, 5000);
+        setTimeout(() => {
+          if(!targetUser.isImprisoned) {
+            player.playerSpeed = 3;
+          }
+        }, 5000);
       }
       if (this.type == "prison") {
         targetEnemy.isImprisoned = true;
         targetEnemy.playerSpeed = 0;
+        console.log(targetEnemy.playerSpeed);
         [targetEnemy.playerX, targetEnemy.playerY] = [605, 10];
       }
       // Deactivate and remove booster on collision
       this.isActive = false;
-    }
-    if (keyIsDown(32)) {
-      
     }
   }
 }
