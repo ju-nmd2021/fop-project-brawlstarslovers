@@ -22,6 +22,7 @@ let randomBoost;
 let plants = [];
 const plantTypes = ["tomato", "potato", "strawberry"];
 let setPlantPos = [];
+let plantLimit = 20;
 
 function getRandomBooster() {
   while (randomBoost == priorBooster) {
@@ -52,6 +53,26 @@ function setRandomPlantPos() {
     }
   }
   return newPlantPos;
+}
+
+function plantSpawner(spawnInterval) {
+  setInterval(() => {
+    if (plants.length < plantLimit) {
+      setPlantPos = setRandomPlantPos();
+      plants.push(
+        new Plant(
+          plantTypes[0],
+          setPlantPos[0],
+          setPlantPos[1],
+          PlayerOne,
+          PlayerTwo,
+          tileSize
+        )
+      );
+    }
+  }, spawnInterval);
+  console.log(plants.length);
+  console.log(tilesX * tilesY);
 }
 
 let animationTopPlayerOne;
@@ -118,6 +139,8 @@ setInterval(() => {
     PlayerTwo
   );
 }, 5000);
+
+plantSpawner(100);
 
 function draw() {
   image(grass, 0, 0);
