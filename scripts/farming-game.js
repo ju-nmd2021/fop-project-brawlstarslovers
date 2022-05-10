@@ -62,6 +62,8 @@ function draw() {
   image(grass, 0, 0);
   let tiles = new Garden();
   tiles.drawTiles(14, 9, 60);
+  
+  randomX = Math.floor(Math.random() * (1000 - 100 + 1));
 
   PlayerOne.animatePlayer(animationTopPlayerOne, index);
   PlayerTwo.animatePlayer(animationTopPlayerTwo, index);
