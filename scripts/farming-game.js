@@ -122,17 +122,15 @@ setInterval(() => {
 function draw() {
   image(grass, 0, 0);
   let tiles = new Garden();
-<<<<<<< Updated upstream
   tiles.drawTiles(14, 9, 60);
-  
+
   randomX = Math.floor(Math.random() * (1000 - 100 + 1));
-=======
+
   tiles.drawTiles(tilesX, tilesY, tileSize);
 
   for (let i = 0; i < plants.length; i++) {
     plants[i].drawPlant();
   }
->>>>>>> Stashed changes
 
   PlayerOne.animatePlayer(animationTopPlayerOne, index);
   PlayerTwo.animatePlayer(animationTopPlayerTwo, index);
