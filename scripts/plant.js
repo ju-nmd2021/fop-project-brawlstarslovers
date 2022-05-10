@@ -27,6 +27,9 @@ class Plant {
     let tileOffset = (this.tileSize - this.plantImage.width) / 2;
     image(this.plantImage, this.plantX + tileOffset, this.plantY + tileOffset);
   }
+  plantPickup() {
+    console.log("pickup!");
+  }
 }
 
 export { Plant };

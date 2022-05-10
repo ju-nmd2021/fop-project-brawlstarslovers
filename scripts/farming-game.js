@@ -41,6 +41,8 @@ function randomTile() {
 
 function setRandomPlantPos() {
   let newPlantPos = randomTile();
+  // console.log("X:" + newPlantPos[0] + "    Y:" + newPlantPos[1]);
+
   for (let i = 0; i < plants.length; i++) {
     if (
       newPlantPos[0] === plants[i].plantX &&
@@ -96,23 +98,11 @@ function setup() {
 window.setup = setup;
 let index = 0;
 // You can see what do these arguments stand for in player.js
-let PlayerOne = new Player(500, 500, 68, 3, 65, 87, 83);
-let PlayerTwo = new Player(100, 100, 39, 3, 37, 38, 40);
+let PlayerOne = new Player(500, 500, 68, 5, 65, 87, 83, 69);
+let PlayerTwo = new Player(100, 100, 39, 5, 37, 38, 40, 13);
 
 //-----------------------------------------------------------playground plant
 
-plants.push(new Plant(plantTypes[0], 200, 100, PlayerOne, PlayerTwo, tileSize));
-setPlantPos = setRandomPlantPos();
-plants.push(
-  new Plant(
-    plantTypes[0],
-    setPlantPos[0],
-    setPlantPos[1],
-    PlayerOne,
-    PlayerTwo,
-    tileSize
-  )
-);
 // setInterval(() => {
 //   testPlant.spawnTimer();
 // }, 3000);
@@ -148,12 +138,15 @@ function draw() {
 
   for (let i = 0; i < plants.length; i++) {
     plants[i].drawPlant();
+    // plants[i].plantPickup();
   }
 
   PlayerOne.animatePlayer(animationTopPlayerOne, index);
   PlayerTwo.animatePlayer(animationTopPlayerTwo, index);
   PlayerTwo.movePlayer();
   PlayerOne.movePlayer();
+  PlayerOne.plantPickup(plants);
+  PlayerTwo.plantPickup(plants);
   PlayerOne.EscapeFromPrison();
   PlayerTwo.EscapeFromPrison();
 
