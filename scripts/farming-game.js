@@ -15,7 +15,7 @@ let offsetY = (720 - tilesY * tileSize) / 2;
 
 let grass;
 let randomX = Math.floor(Math.random() * (1000 - 100 + 1));
-let boostersList = ["prison", "speed", "booze"];
+let boostersList = ["prison", "speed", "booze", "teleport"];
 let priorBooster;
 let randomBoost;
 
@@ -41,8 +41,6 @@ function randomTile() {
 
 function setRandomPlantPos() {
   let newPlantPos = randomTile();
-  console.log("X:" + newPlantPos[0] + "    Y:" + newPlantPos[1]);
-
   for (let i = 0; i < plants.length; i++) {
     if (
       newPlantPos[0] === plants[i].plantX &&
@@ -71,8 +69,6 @@ function plantSpawner(spawnInterval) {
       );
     }
   }, spawnInterval);
-  console.log(plants.length);
-  console.log(tilesX * tilesY);
 }
 
 let animationTopPlayerOne;
@@ -104,7 +100,6 @@ let PlayerOne = new Player(500, 500, 68, 3, 65, 87, 83);
 let PlayerTwo = new Player(100, 100, 39, 3, 37, 38, 40);
 
 //-----------------------------------------------------------playground plant
-console.log(setPlantPos);
 
 plants.push(new Plant(plantTypes[0], 200, 100, PlayerOne, PlayerTwo, tileSize));
 setPlantPos = setRandomPlantPos();

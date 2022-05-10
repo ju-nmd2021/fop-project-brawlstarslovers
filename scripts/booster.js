@@ -10,7 +10,9 @@ class Booster {
     this.star = loadImage("assets/star.png");
     this.assets = {'speed': loadImage("../assets/speed.png"),
                    'prison': loadImage("../assets/star.png"),
-                   'booze': loadImage("../assets//booze.png")};
+                   'booze': loadImage("../assets//booze.png"),
+                  'teleport': loadImage("../assets/teleport.png"),
+                  };
   }
   createBooster() {
     if(this.isActive) {
@@ -18,6 +20,7 @@ class Booster {
     this.posY -= 3;
     }
   }
+
   checkPlayerCollision(playerX, playerY, player) {
     let targetEnemy = player === this.playerOne ? this.playerTwo : this.playerOne;
     let targetUser = player === this.playerOne ? this.playerOne : this.playerTwo;
@@ -39,11 +42,10 @@ class Booster {
       if (this.type == "prison") {
         targetEnemy.isImprisoned = true;
         targetEnemy.playerSpeed = 0;
-        console.log(targetEnemy.playerSpeed);
         [targetEnemy.playerX, targetEnemy.playerY] = [605, 10];
       }
       if (this.type == 'booze') {
-        
+        if(targetEnemy == this.playerTwo) {
         targetEnemy.keyRight = 37;
         targetEnemy.keyLeft = 39;
         targetEnemy.keyTop = 40;
@@ -56,9 +58,29 @@ class Booster {
           targetEnemy.keyBottom = 40;
   
         }, 5000);
+      } else {
+        targetEnemy.keyRight = 65;
+        targetEnemy.keyLeft = 68;
+        targetEnemy.keyTop = 83;
+        targetEnemy.keyBottom = 87;
 
+        setTimeout(() => {
+          targetEnemy.keyRight = 68;
+          targetEnemy.keyLeft = 65;
+          targetEnemy.keyTop = 87;
+          targetEnemy.keyBottom = 83;
+  
+        }, 5000);
+
+      }
         // 39 right 37 left 38 top 40 bottom
       }
+
+      if (this.type == 'teleport') {
+        targetEnemy.playerX = Math.floor(Math.random() * (1000 - 100 + 1));
+        targetEnemy.playerY = Math.floor(Math.random() * (600 - 100 + 1));
+      }
+   
       // Deactivate and remove booster on collision
       this.isActive = false;
     }
