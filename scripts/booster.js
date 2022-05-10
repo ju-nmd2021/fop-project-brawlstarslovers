@@ -16,8 +16,8 @@ class Booster {
   }
   createBooster() {
     if(this.isActive) {
+      this.posY -= 3;
     image(this.assets[this.type], this.posX, this.posY);
-    this.posY -= 3;
     }
   }
 
