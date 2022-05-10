@@ -103,18 +103,6 @@ let PlayerTwo = new Player(100, 100, 39, 5, 37, 38, 40, 13);
 
 //-----------------------------------------------------------playground plant
 
-plants.push(new Plant(plantTypes[0], 200, 100, PlayerOne, PlayerTwo, tileSize));
-setPlantPos = setRandomPlantPos();
-plants.push(
-  new Plant(
-    plantTypes[0],
-    setPlantPos[0],
-    setPlantPos[1],
-    PlayerOne,
-    PlayerTwo,
-    tileSize
-  )
-);
 // setInterval(() => {
 //   testPlant.spawnTimer();
 // }, 3000);
