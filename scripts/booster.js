@@ -9,7 +9,8 @@ class Booster {
     this.spaceBarsCounter = 0;
     this.star = loadImage("assets/star.png");
     this.assets = {'speed': loadImage("../assets/speed.png"),
-                   'prison': loadImage("../assets/star.png")};
+                   'prison': loadImage("../assets/star.png"),
+                   'booze': loadImage("../assets//booze.png")};
   }
   createBooster() {
     if(this.isActive) {
@@ -40,6 +41,23 @@ class Booster {
         targetEnemy.playerSpeed = 0;
         console.log(targetEnemy.playerSpeed);
         [targetEnemy.playerX, targetEnemy.playerY] = [605, 10];
+      }
+      if (this.type == 'booze') {
+        
+        targetEnemy.keyRight = 37;
+        targetEnemy.keyLeft = 39;
+        targetEnemy.keyTop = 40;
+        targetEnemy.keyBottom = 38;
+
+        setTimeout(() => {
+          targetEnemy.keyRight = 39;
+          targetEnemy.keyLeft = 37;
+          targetEnemy.keyTop = 38;
+          targetEnemy.keyBottom = 40;
+  
+        }, 5000);
+
+        // 39 right 37 left 38 top 40 bottom
       }
       // Deactivate and remove booster on collision
       this.isActive = false;

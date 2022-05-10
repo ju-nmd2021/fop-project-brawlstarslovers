@@ -15,7 +15,7 @@ let offsetY = (720 - tilesY * tileSize) / 2;
 
 let grass;
 let randomX = Math.floor(Math.random() * (1000 - 100 + 1));
-let boostersList = ["prison", "speed"];
+let boostersList = ["prison", "speed", "booze"];
 let priorBooster;
 let randomBoost;
 
