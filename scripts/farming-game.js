@@ -1,10 +1,15 @@
-// Tasks:
-// Resize background
 import { Player } from "./player.js";
 import { Garden } from "./garden.js";
 import { Booster } from "./booster.js";
 import { Plant } from "./plant.js";
 let gameState = 'start';
+
+// Remove scroll on arrows 
+window.addEventListener("keydown", function(e) {
+  if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
+      e.preventDefault();
+  }
+}, false);
 
 let sketch = new p5();
 
@@ -42,8 +47,6 @@ function randomTile() {
 
 function setRandomPlantPos() {
   let newPlantPos = randomTile();
-  // console.log("X:" + newPlantPos[0] + "    Y:" + newPlantPos[1]);
-
   for (let i = 0; i < plants.length; i++) {
     if (
       newPlantPos[0] === plants[i].plantX &&
@@ -98,11 +101,10 @@ function setup() {
 }
 window.setup = setup;
 let index = 0;
-// You can see what do these arguments stand for in player.js
 let PlayerOne = new Player(500, 500, 68, 5, 65, 87, 83, 69);
 let PlayerTwo = new Player(100, 100, 39, 5, 37, 38, 40, 13);
 
-//-----------------------------------------------------------playground plant
+//------------------------------------------------------------playground plant
 
 // setInterval(() => {
 //   testPlant.spawnTimer();
@@ -133,10 +135,10 @@ plantSpawner(100);
 function draw() {
   if (gameState == 'start') {
     textSize(32);
-    text('Press SPACEBAR to start the game', 390, 100);
+    text('Press ENTER to start the game', 420, 100);
     text('Or scroll down to see some tips', 420, 160);
   }
-  if (keyIsDown(32)) {
+  if (keyIsDown(13)) {
     gameState = 'run';
   }
   if (gameState === 'run') {
@@ -150,7 +152,6 @@ function draw() {
 
   for (let i = 0; i < plants.length; i++) {
     plants[i].drawPlant();
-    // plants[i].plantPickup();
   }
 
   PlayerOne.animatePlayer(animationTopPlayerOne, index);

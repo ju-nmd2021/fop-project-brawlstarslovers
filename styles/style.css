@@ -16,13 +16,13 @@ body {
 .tips {
   align-self: start;
   margin-top: 30px;
-  max-width: 1280px;
-  margin-left: 150px;
-  margin-right: 150px;
+  max-width: 780px;
+ margin-left: auto;
+ margin-right: auto;
 }
 
 .tips__title {
-  width: 1280px;
+  width: 780px;
   text-align: center;
   font-size: 42px;
   font-family: Arial, sans-serif;
