@@ -4,6 +4,7 @@ import { Player } from "./player.js";
 import { Garden } from "./garden.js";
 import { Booster } from "./booster.js";
 import { Plant } from "./plant.js";
+let gameState = 'start';
 
 let sketch = new p5();
 
@@ -57,7 +58,7 @@ function setRandomPlantPos() {
 
 function plantSpawner(spawnInterval) {
   setInterval(() => {
-    if (plants.length < plantLimit) {
+    if (plants.length < plantLimit && gameState == 'run') {
       setPlantPos = setRandomPlantPos();
       plants.push(
         new Plant(
@@ -127,7 +128,18 @@ setInterval(() => {
 
 plantSpawner(100);
 
+
+
 function draw() {
+  if (gameState == 'start') {
+    textSize(32);
+    text('Press SPACEBAR to start the game', 390, 100);
+    text('Or scroll down to see some tips', 420, 160);
+  }
+  if (keyIsDown(32)) {
+    gameState = 'run';
+  }
+  if (gameState === 'run') {
   image(grass, 0, 0);
   let tiles = new Garden();
   tiles.drawTiles(14, 9, 60);
@@ -174,6 +186,7 @@ function draw() {
   if (frameCount % 30 == 0) {
     index = 1;
   }
+}
   // --
 }
 
