@@ -65,7 +65,7 @@ class Player {
       if (keyIsDown(32) && this.spaceBarsCounter < 30) {
         this.spaceBarsCounter += 1;
         if (this.spaceBarsCounter >= 30) {
-          this.playerSpeed = 3;
+          this.playerSpeed = 5;
           this.spaceBarsCounter = 0;
           this.isImprisoned = false;
         }

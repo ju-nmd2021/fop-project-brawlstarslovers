@@ -33,9 +33,9 @@ class Booster {
       this.isActive
     ) {
       if (this.type == "speed") {
-        player.playerSpeed = 6;
+        player.playerSpeed = 8;
         setTimeout(() => {
-          player.playerSpeed = 3;
+          player.playerSpeed = 5;
         }, 5000);
       }
       if (this.type == "prison") {
@@ -71,12 +71,10 @@ class Booster {
         }
         // 39 right 37 left 38 top 40 bottom
       }
-
       if (this.type == "teleport") {
         targetEnemy.playerX = Math.floor(Math.random() * (1000 - 100 + 1));
         targetEnemy.playerY = Math.floor(Math.random() * (600 - 100 + 1));
       }
-
       // Deactivate and remove booster on collision
       this.isActive = false;
     }
