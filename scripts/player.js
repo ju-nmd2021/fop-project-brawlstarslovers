@@ -114,6 +114,13 @@ class Player {
         this.isHoldingPlant = false;
       }
   }
+  printScore(scoreX, scoreY) {
+    noStroke();
+    textStyle(BOLD);
+      fill("white");
+      textSize(32);
+    text(`Your score: ${this.score}`, scoreX, scoreY);
+  }
 }
 
 export { Player };
