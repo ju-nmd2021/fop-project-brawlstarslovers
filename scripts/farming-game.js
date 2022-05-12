@@ -33,26 +33,29 @@ let priorBooster;
 let randomBoost;
 
 let plants = [];
-const plantTypes = [
-  {
-    plantType: "potato",
-    pointValue: 5,
-  },
-  {
-    plantType: "carrot",
-    pointValue: 10,
-  },
-  {
-    plantType: "broccoli",
-    pointValue: 15,
-  },
-  {
-    plantType: "tomato",
-    pointValue: 20,
-  },
-];
-let setPlantPos = [];
+const plantTypes = [{
+  plantType: "potato",
+  pointValue: 5
+}, 
+{
+  plantType: "carrot",
+  pointValue: 10
+}, 
+{
+  plantType: "broccoli",
+  pointValue: 15
+}, 
+{
+  plantType: "tomato",
+  pointValue: 20
+}];
+// let setPlantPos = [];
 let plantLimit = 20;
+let lowChance = 10;
+let midLowChance = 20;
+let midhighChance = 30;
+// let highChance = 40;
+
 
 function getRandomBooster() {
   while (randomBoost == priorBooster) {
@@ -83,18 +86,30 @@ function setRandomPlantPos() {
   return newPlantPos;
 }
 function getRandomPlant() {
-  const randomNumber = console.log(Math.ceil(Math.random() * 100));
+  const randomNumber = Math.ceil((Math.random() * 100));
+  console.log(randomNumber);
+  if (randomNumber > 100 - lowChance) {
+    return plantTypes[3];
+  } else if (randomNumber > 100 - midLowChance) {
+    return plantTypes[2];
+  } else if (randomNumber > 100 - midhighChance) {
+    return plantTypes[1];
+  } else {
+    return plantTypes[0];
+  }
+
 }
 
 function plantSpawner(spawnInterval) {
   setInterval(() => {
     if (plants.length < plantLimit && gameState == "run") {
-      getRandomPlant();
-      setPlantPos = setRandomPlantPos();
+      const setPlantPos = setRandomPlantPos();
+      const randomPlant = getRandomPlant();
+      
       plants.push(
         new Plant(
-          plantTypes[0].plantType,
-          plantTypes[0].pointValue,
+          randomPlant.plantType,
+          randomPlant.pointValue,
           setPlantPos[0],
           setPlantPos[1],
           PlayerOne,
