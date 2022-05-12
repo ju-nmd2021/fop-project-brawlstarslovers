@@ -87,7 +87,6 @@ function setRandomPlantPos() {
 }
 function getRandomPlant() {
   const randomNumber = Math.ceil((Math.random() * 100));
-  console.log(randomNumber);
   if (randomNumber > 100 - lowChance) {
     return plantTypes[3];
   } else if (randomNumber > 100 - midLowChance) {

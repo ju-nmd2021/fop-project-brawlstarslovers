@@ -51,7 +51,6 @@ class Player {
   }
   checkPosition(plants) {
     if (keyIsDown(this.keyPickup)) {
-      // console.log("Pickup function called");
       // Check position using center of player
       for (let i = 0; i < plants.length; i++) {
         if (
@@ -59,7 +58,6 @@ class Player {
           this.playerX + this.playerWidth / 2 <=
             plants[i].plantX + plants[i].tileSize
         ) {
-          // console.log("InX");
           if (
             this.playerY + this.playerWidth / 2 >= plants[i].plantY &&
             this.playerY + this.playerWidth / 2 <=
