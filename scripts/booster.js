@@ -73,7 +73,7 @@ class Booster {
       }
       if (this.type == "teleport") {
         targetEnemy.playerX = Math.floor(Math.random() * (1000 - 100 + 1));
-        targetEnemy.playerY = Math.floor(Math.random() * (600 - 100 + 1));
+        targetEnemy.playerY = 25;
       }
       // Deactivate and remove booster on collision
       this.isActive = false;
