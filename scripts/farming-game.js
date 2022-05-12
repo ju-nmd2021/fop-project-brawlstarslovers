@@ -2,14 +2,22 @@ import { Player } from "./player.js";
 import { Garden } from "./garden.js";
 import { Booster } from "./booster.js";
 import { Plant } from "./plant.js";
-let gameState = 'start';
+let gameState = "run";
 
-// Remove scroll on arrows 
-window.addEventListener("keydown", function(e) {
-  if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
+// Remove scroll on arrows
+window.addEventListener(
+  "keydown",
+  function (e) {
+    if (
+      ["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(
+        e.code
+      ) > -1
+    ) {
       e.preventDefault();
-  }
-}, false);
+    }
+  },
+  false
+);
 
 let sketch = new p5();
 
@@ -61,7 +69,7 @@ function setRandomPlantPos() {
 
 function plantSpawner(spawnInterval) {
   setInterval(() => {
-    if (plants.length < plantLimit && gameState == 'run') {
+    if (plants.length < plantLimit && gameState == "run") {
       setPlantPos = setRandomPlantPos();
       plants.push(
         new Plant(
@@ -128,66 +136,64 @@ setInterval(() => {
   );
 }, 5000);
 
-plantSpawner(100);
-
-
+plantSpawner(1000);
 
 function draw() {
-  if (gameState == 'start') {
+  if (gameState == "start") {
     textSize(32);
-    text('Press ENTER to start the game', 420, 100);
-    text('Or scroll down to see some tips', 420, 160);
+    text("Press ENTER to start the game", 420, 100);
+    text("Or scroll down to see some tips", 420, 160);
   }
   if (keyIsDown(13)) {
-    gameState = 'run';
+    gameState = "run";
   }
-  if (gameState === 'run') {
-  image(grass, 0, 0);
-  let tiles = new Garden();
-  tiles.drawTiles(14, 9, 60);
+  if (gameState === "run") {
+    image(grass, 0, 0);
+    let tiles = new Garden();
+    tiles.drawTiles(14, 9, 60);
 
-  randomX = Math.floor(Math.random() * (1000 - 100 + 1));
+    randomX = Math.floor(Math.random() * (1000 - 100 + 1));
 
-  tiles.drawTiles(tilesX, tilesY, tileSize);
+    tiles.drawTiles(tilesX, tilesY, tileSize);
 
-  for (let i = 0; i < plants.length; i++) {
-    plants[i].drawPlant();
+    for (let i = 0; i < plants.length; i++) {
+      plants[i].drawPlant();
+    }
+
+    PlayerOne.animatePlayer(animationTopPlayerOne, index);
+    PlayerTwo.animatePlayer(animationTopPlayerTwo, index);
+    PlayerTwo.movePlayer();
+    PlayerOne.movePlayer();
+    PlayerOne.plantPickup(plants);
+    PlayerTwo.plantPickup(plants);
+    PlayerOne.EscapeFromPrison();
+    PlayerTwo.EscapeFromPrison();
+
+    if (BoosterFruit) {
+      BoosterFruit.createBooster();
+      BoosterFruit.checkPlayerCollision(
+        PlayerOne.playerX,
+        PlayerOne.playerY,
+        PlayerOne
+      );
+      BoosterFruit.checkPlayerCollision(
+        PlayerTwo.playerX,
+        PlayerTwo.playerY,
+        PlayerTwo
+      );
+    }
+    // --
+    // These two if's are responsible for  all animations
+    // Since we decided on having 2 frames for all animations, we can set global index (line 27)
+    // And then change it twice a frame (this if what following if statemnts do)
+
+    if (frameCount % 15 == 0) {
+      index = 0;
+    }
+    if (frameCount % 30 == 0) {
+      index = 1;
+    }
   }
-
-  PlayerOne.animatePlayer(animationTopPlayerOne, index);
-  PlayerTwo.animatePlayer(animationTopPlayerTwo, index);
-  PlayerTwo.movePlayer();
-  PlayerOne.movePlayer();
-  PlayerOne.plantPickup(plants);
-  PlayerTwo.plantPickup(plants);
-  PlayerOne.EscapeFromPrison();
-  PlayerTwo.EscapeFromPrison();
-
-  if (BoosterFruit) {
-    BoosterFruit.createBooster();
-    BoosterFruit.checkPlayerCollision(
-      PlayerOne.playerX,
-      PlayerOne.playerY,
-      PlayerOne
-    );
-    BoosterFruit.checkPlayerCollision(
-      PlayerTwo.playerX,
-      PlayerTwo.playerY,
-      PlayerTwo
-    );
-  }
-  // --
-  // These two if's are responsible for  all animations
-  // Since we decided on having 2 frames for all animations, we can set global index (line 27)
-  // And then change it twice a frame (this if what following if statemnts do)
-
-  if (frameCount % 15 == 0) {
-    index = 0;
-  }
-  if (frameCount % 30 == 0) {
-    index = 1;
-  }
-}
   // --
 }
 

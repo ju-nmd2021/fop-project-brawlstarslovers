@@ -21,7 +21,9 @@ class Player {
     this.keyPickup = keyPickup;
     this.isImprisoned = false;
     this.prison = loadImage("../assets/jail1.png");
-    this.playerOffset = 36;
+    this.playerWidth = 72;
+    this.isHoldingPlant = false;
+    this.heldPlant;
   }
   animatePlayer(framesArray, index) {
     image(framesArray[index], this.playerX, this.playerY);
@@ -39,18 +41,43 @@ class Player {
     if (keyIsDown(this.keyBottom)) {
       this.playerY += this.playerSpeed;
     }
+
+    noFill();
+    stroke("red");
+    rect(
+      this.playerX + this.playerWidth / 2,
+      this.playerY + this.playerWidth / 2,
+      1,
+      1
+    );
   }
   plantPickup(plants) {
+    if (this.checkPosition(plants)) {
+      console.log("lol");
+    }
+  }
+  checkPosition(plants) {
     if (keyIsDown(this.keyPickup)) {
-      console.log("Pickup function called");
-
+      // console.log("Pickup function called");
+      // Check position using center of player
       for (let i = 0; i < plants.length; i++) {
         if (
-          this.playerX + this.playerOffset >= plants[i].plantX &&
-          this.playerX - this.playerOffset <=
+          this.playerX + this.playerWidth / 2 >= plants[i].plantX &&
+          this.playerX + this.playerWidth / 2 <=
             plants[i].plantX + plants[i].tileSize
         ) {
-          console.log("in X");
+          // console.log("InX");
+          if (
+            this.playerY + this.playerWidth / 2 >= plants[i].plantY &&
+            this.playerY + this.playerWidth / 2 <=
+              plants[i].plantY + plants[i].tileSize
+          ) {
+            console.log("In position for pickup");
+            this.heldplant = plants[i];
+            let newPlants = plants.splice(i, 1);
+            console.log(newPlants);
+            return newPlants;
+          }
         }
       }
     }
