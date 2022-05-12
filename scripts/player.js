@@ -62,11 +62,13 @@ class Player {
             this.playerY + this.playerWidth / 2 <=
               plants[i].plantY + plants[i].tileSize
           ) {
+            if(!this.heldplant) {
+
+            
             this.heldplant = plants[i];
             console.log(this.heldplant);
-            let newPlants = plants.splice(i, 1);
-            console.log(newPlants);
-            return newPlants;
+            plants.splice(i, 1);
+          }
           }
         }
       }

@@ -201,6 +201,7 @@ function draw() {
       plants[i].drawPlant();
     }
 
+    Chest.createBasket();
     PlayerOne.animatePlayer(animationTopPlayerOne, index);
     PlayerTwo.animatePlayer(animationTopPlayerTwo, index);
     PlayerTwo.movePlayer();
@@ -210,7 +211,6 @@ function draw() {
     PlayerOne.EscapeFromPrison();
     PlayerTwo.EscapeFromPrison();
 
-    Chest.createBasket();
 
     if (BoosterFruit) {
       BoosterFruit.createBooster();
@@ -225,6 +225,7 @@ function draw() {
         PlayerTwo
       );
     }
+    
     // --
     // These two if's are responsible for  all animations
     // Since we decided on having 2 frames for all animations, we can set global index (line 27)
