@@ -1,16 +1,16 @@
 // let counter = 0;
 
 class Plant {
-  constructor(plantType, plantX, plantY, playerOne, playerTwo, tileSize) {
+  constructor(plantType, pointValue, plantX, plantY, playerOne, playerTwo, tileSize) {
     this.plantType = plantType;
+    this.pointValue = pointValue;
     this.plantX = plantX;
     this.plantY = plantY;
     this.playerOne = playerOne;
     this.playerTwo = playerTwo;
     this.isPickedUp = false;
     this.spawnInterval = 1000;
-    this.pointWorth = 0;
-    this.plantImage = loadImage("../assets/" + plantType + ".png");
+    this.plantImage = loadImage("assets/" + plantType + ".png");
     this.tileSize = tileSize;
     // this.tileOffest = (this.tileSize - this.plantImage.width) / 2;
   }

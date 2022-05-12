@@ -9,10 +9,10 @@ class Booster {
     this.spaceBarsCounter = 0;
     this.star = loadImage("assets/star.png");
     this.assets = {
-      speed: loadImage("../assets/speed.png"),
-      prison: loadImage("../assets/star.png"),
-      booze: loadImage("../assets//booze.png"),
-      teleport: loadImage("../assets/teleport.png"),
+      speed: loadImage("assets/speed.png"),
+      prison: loadImage("assets/star.png"),
+      booze: loadImage("assets//booze.png"),
+      teleport: loadImage("assets/teleport.png"),
     };
   }
   createBooster() {

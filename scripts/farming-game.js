@@ -34,7 +34,22 @@ let priorBooster;
 let randomBoost;
 
 let plants = [];
-const plantTypes = ["tomato", "potato", "strawberry"];
+const plantTypes = [{
+  plantType: "potato",
+  pointValue: 5
+}, 
+{
+  plantType: "carrot",
+  pointValue: 10
+}, 
+{
+  plantType: "broccoli",
+  pointValue: 15
+}, 
+{
+  plantType: "tomato",
+  pointValue: 20
+}];
 let setPlantPos = [];
 let plantLimit = 20;
 
@@ -66,14 +81,20 @@ function setRandomPlantPos() {
   }
   return newPlantPos;
 }
+function getRandomPlant() {
+  const randomNumber =
+  console.log(Math.ceil((Math.random() * 100)));
+}
 
 function plantSpawner(spawnInterval) {
   setInterval(() => {
     if (plants.length < plantLimit && gameState == "run") {
+      getRandomPlant();
       setPlantPos = setRandomPlantPos();
       plants.push(
         new Plant(
-          plantTypes[0],
+          plantTypes[0].plantType,
+          plantTypes[0].pointValue,
           setPlantPos[0],
           setPlantPos[1],
           PlayerOne,
@@ -89,7 +110,7 @@ let animationTopPlayerOne;
 let animationTopPlayerTwo;
 
 function preload() {
-  grass = loadImage("../assets/grass2.png");
+  grass = loadImage("assets/grass2.png");
   // Initialization of all animations
   animationTopPlayerOne = [
     loadImage("assets/blue-man-running1.png"),
@@ -97,7 +118,7 @@ function preload() {
   ];
   animationTopPlayerTwo = [
     loadImage("assets/red-man-run1.png"),
-    loadImage("../assets/red-man-run2.png"),
+    loadImage("assets/red-man-run2.png"),
   ];
 }
 

@@ -20,7 +20,7 @@ class Player {
     this.keyBottom = keyBottom;
     this.keyPickup = keyPickup;
     this.isImprisoned = false;
-    this.prison = loadImage("../assets/jail1.png");
+    this.prison = loadImage("assets/jail1.png");
     this.playerWidth = 72;
     this.isHoldingPlant = false;
     this.heldPlant;
