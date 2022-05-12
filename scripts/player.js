@@ -41,19 +41,9 @@ class Player {
     if (keyIsDown(this.keyBottom)) {
       this.playerY += this.playerSpeed;
     }
-
-    noFill();
-    stroke("red");
-    rect(
-      this.playerX + this.playerWidth / 2,
-      this.playerY + this.playerWidth / 2,
-      1,
-      1
-    );
   }
   plantPickup(plants) {
     if (this.checkPosition(plants)) {
-      console.log("lol");
     }
   }
   checkPosition(plants) {
@@ -72,8 +62,8 @@ class Player {
             this.playerY + this.playerWidth / 2 <=
               plants[i].plantY + plants[i].tileSize
           ) {
-            console.log("In position for pickup");
             this.heldplant = plants[i];
+            console.log(this.heldplant);
             let newPlants = plants.splice(i, 1);
             console.log(newPlants);
             return newPlants;
