@@ -142,8 +142,8 @@ window.preload = preload;
 function setup() {
   let canvas = createCanvas(1280, 720);
   canvas.parent("container");
-  PlayerOne = new Player(500, 500, 68, 5, 65, 87, 83, 69);
-  PlayerTwo = new Player(100, 100, 39, 5, 37, 38, 40, 13);
+  PlayerOne = new Player(500, 500, 68, 5, 65, 87, 83, 69, 69);
+  PlayerTwo = new Player(100, 100, 39, 5, 37, 38, 40, 13, 13);
   Chest = new Basket(575, 600);
 }
 window.setup = setup;
@@ -210,6 +210,9 @@ function draw() {
     PlayerTwo.plantPickup(plants);
     PlayerOne.EscapeFromPrison();
     PlayerTwo.EscapeFromPrison();
+
+    PlayerOne.putItemIntoBasket(575,600);
+    PlayerOne.putItemIntoBasket(575,600);
 
 
     if (BoosterFruit) {

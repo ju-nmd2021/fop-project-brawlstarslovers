@@ -8,8 +8,10 @@ class Player {
     keyLeft,
     keyTop,
     keyBottom,
-    keyPickup
+    keyPickup,
+    keyDrop,
   ) {
+    this.score = 0;
     this.spaceBarsCounter = 0;
     this.playerX = playerX;
     this.playerY = playerY;
@@ -24,6 +26,7 @@ class Player {
     this.playerWidth = 72;
     this.isHoldingPlant = false;
     this.heldPlant;
+    this.keyDrop = keyDrop;
   }
   animatePlayer(framesArray, index) {
     image(framesArray[index], this.playerX, this.playerY);
@@ -63,10 +66,7 @@ class Player {
               plants[i].plantY + plants[i].tileSize
           ) {
             if(!this.heldplant) {
-
-            
             this.heldplant = plants[i];
-            console.log(this.heldplant);
             plants.splice(i, 1);
           }
           }
@@ -90,6 +90,18 @@ class Player {
         }
       }
     }
+  }
+  putItemIntoBasket(x, y) {
+    if ( this.playerX <= x + 40 && 
+      this.playerX >= x - 40 &&
+      this.playerY <= y + 40 &&
+      this.playerY >= y - 40 && 
+      this.heldplant &&
+      keyIsDown(this.keyDrop)) {
+        this.score += this.heldplant.pointValue;
+        this.heldplant = false;
+        console.log(this.score + ' - score');
+      }
   }
 }
 
