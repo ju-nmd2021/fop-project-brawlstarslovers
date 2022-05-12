@@ -63,8 +63,8 @@ class Player {
             this.playerY + this.playerWidth / 2 <=
               plants[i].plantY + plants[i].tileSize
           ) {
-            if(!this.heldplant) {
-            this.heldplant = plants[i];
+            if(!this.heldPlant) {
+            this.heldPlant = plants[i];
             plants.splice(i, 1);
           }
           }
@@ -94,10 +94,10 @@ class Player {
       this.playerX >= x - 40 &&
       this.playerY <= y + 40 &&
       this.playerY >= y - 40 && 
-      this.heldplant &&
+      this.heldPlant &&
       keyIsDown(this.keyDrop)) {
-        this.score += this.heldplant.pointValue;
-        this.heldplant = false;
+        this.score += this.heldPlant.pointValue;
+        this.heldPlant = false;
         console.log(this.score + ' - score');
       }
   }
