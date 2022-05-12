@@ -122,17 +122,27 @@ function plantSpawner(spawnInterval) {
 
 let animationTopPlayerOne;
 let animationTopPlayerTwo;
+let animationTopHoldingPlayerOne;
+let animationTopHoldingPlayerTwo;
 
 function preload() {
   grass = loadImage("assets/grass2.png");
   // Initialization of all animations
   animationTopPlayerOne = [
     loadImage("assets/blue-man-running1.png"),
-    loadImage("assets/blue-man-running2.png"),
+    loadImage("assets/blue-man-running2.png")
   ];
   animationTopPlayerTwo = [
     loadImage("assets/red-man-run1.png"),
-    loadImage("assets/red-man-run2.png"),
+    loadImage("assets/red-man-run2.png")
+  ];
+  animationTopHoldingPlayerOne = [
+    loadImage("assets/blue-man-running-carry1.png"),
+    loadImage("assets/blue-man-running-carry2.png")
+  ];
+  animationTopHoldingPlayerTwo = [
+    loadImage("assets/red-man-run-carry1.png"),
+    loadImage("assets/red-man-run-carry2.png")
   ];
 }
 
@@ -150,7 +160,7 @@ let index = 0;
 let PlayerOne;
 let PlayerTwo;
 let Chest;
-``;
+
 
 //------------------------------------------------------------playground plant
 
@@ -190,7 +200,6 @@ function draw() {
   if (gameState === "run") {
     image(grass, 0, 0);
     let tiles = new Garden();
-    tiles.drawTiles(14, 9, 60);
 
     randomX = Math.floor(Math.random() * (1000 - 100 + 1));
 
@@ -201,17 +210,17 @@ function draw() {
     }
 
     Chest.createBasket();
-    PlayerOne.animatePlayer(animationTopPlayerOne, index);
-    PlayerTwo.animatePlayer(animationTopPlayerTwo, index);
     PlayerTwo.movePlayer();
     PlayerOne.movePlayer();
     PlayerOne.plantPickup(plants);
     PlayerTwo.plantPickup(plants);
+    PlayerOne.animatePlayer(animationTopPlayerOne,animationTopHoldingPlayerOne, index);
+    PlayerTwo.animatePlayer(animationTopPlayerTwo,animationTopHoldingPlayerTwo, index);
     PlayerOne.EscapeFromPrison();
     PlayerTwo.EscapeFromPrison();
 
     PlayerOne.putItemIntoBasket(575,600);
-    PlayerOne.putItemIntoBasket(575,600);
+    PlayerTwo.putItemIntoBasket(575,600);
 
 
     if (BoosterFruit) {

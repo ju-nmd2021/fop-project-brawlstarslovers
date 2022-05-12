@@ -28,8 +28,17 @@ class Player {
     this.heldPlant;
     this.keyDrop = keyDrop;
   }
-  animatePlayer(framesArray, index) {
-    image(framesArray[index], this.playerX, this.playerY);
+  animatePlayer(runningFramesArray, holdingFramesArray, index) {
+    if (!this.isHoldingPlant) {
+      image(runningFramesArray[index], this.playerX, this.playerY);
+    } else if(this.isHoldingPlant) {
+      image(holdingFramesArray[index], this.playerX, this.playerY);
+    }
+    
+    if (this.isHoldingPlant) {
+      image(this.heldPlant.plantImage, this.playerX + this.playerWidth / 6, this.playerY - this.playerWidth /3 );
+      // console.log("plantHold is running");
+    }
   }
   movePlayer() {
     if (keyIsDown(this.keyRight)) {
@@ -47,6 +56,7 @@ class Player {
   }
   plantPickup(plants) {
     if (this.checkPosition(plants)) {
+      this.isHoldingPlant = true;
     }
   }
   checkPosition(plants) {
@@ -65,7 +75,9 @@ class Player {
           ) {
             if(!this.heldPlant) {
             this.heldPlant = plants[i];
+            console.log(this.heldPlant);
             plants.splice(i, 1);
+            return true
           }
           }
         }
@@ -99,6 +111,7 @@ class Player {
         this.score += this.heldPlant.pointValue;
         this.heldPlant = false;
         console.log(this.score + ' - score');
+        this.isHoldingPlant = false;
       }
   }
 }
