@@ -19,7 +19,7 @@ window.addEventListener(
   false
 );
 
-let sketch = new p5();
+
 
 let tilesX = 14;
 let tilesY = 9;
@@ -104,13 +104,15 @@ function preload() {
 window.preload = preload;
 
 function setup() {
-  let canvas = sketch.createCanvas(1280, 720);
+  let canvas = createCanvas(1280, 720);
   canvas.parent("container");
+   PlayerOne = new Player(500, 500, 68, 5, 65, 87, 83, 69);
+PlayerTwo = new Player(100, 100, 39, 5, 37, 38, 40, 13);
 }
 window.setup = setup;
 let index = 0;
-let PlayerOne = new Player(500, 500, 68, 5, 65, 87, 83, 69);
-let PlayerTwo = new Player(100, 100, 39, 5, 37, 38, 40, 13);
+let PlayerOne;
+let PlayerTwo;
 
 //------------------------------------------------------------playground plant
 
