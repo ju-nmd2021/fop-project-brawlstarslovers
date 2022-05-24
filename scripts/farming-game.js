@@ -154,8 +154,8 @@ window.preload = preload;
 function setup() {
   let canvas = createCanvas(1280, 720);
   canvas.parent("container");
-  PlayerOne = new Player(900, 500, 68, 5, 65, 87, 83, 69, 69);
-  PlayerTwo = new Player(400, 500, 39, 5, 37, 38, 40, 13, 13);
+  PlayerOne = new Player(400, 500, 68, 5, 65, 87, 83, 69, 69);
+  PlayerTwo = new Player(900, 500, 39, 5, 37, 38, 40, 13, 13);
   Chest = new Basket(basketStartX, basketStartY);
 }
 window.setup = setup;
@@ -195,7 +195,7 @@ function draw() {
     background("#214770");
     textSize(32);
     textStyle(ITALIC);
-    fill('white');
+    fill("white");
     text("Press ENTER to start the game", width / 2 - 240, height / 2 - 35);
     text("Or scroll down to see some tips", width / 2 - 240, height / 2);
   }
