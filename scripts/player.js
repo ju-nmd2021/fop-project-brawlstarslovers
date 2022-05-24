@@ -41,7 +41,6 @@ class Player {
         this.playerX + 8,
         this.playerY - this.playerWidth / 3
       );
-      // console.log("plantHold is running");
     }
   }
   movePlayer() {
@@ -129,7 +128,7 @@ class Player {
   }
 
   isWon() {
-    if (this.score >= 5) {
+    if (this.score >= 60) {
       return true;
     }
   }
