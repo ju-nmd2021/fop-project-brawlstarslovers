@@ -78,8 +78,6 @@ class Booster {
       // Deactivate and remove booster on collision
       this.isActive = false;
     }
-    if (keyIsDown(32)) {
-    }
   }
 }
 
