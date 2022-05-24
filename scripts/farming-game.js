@@ -123,30 +123,82 @@ function plantSpawner(spawnInterval) {
   }, spawnInterval);
 }
 
-let animationTopPlayerOne;
-let animationTopPlayerTwo;
+let animationsPlayerOne;
+let animationsPlayerTwo;
 let animationTopHoldingPlayerOne;
 let animationTopHoldingPlayerTwo;
 
 function preload() {
   grass = loadImage("assets/grass2.png");
   // Initialization of all animations
-  animationTopPlayerOne = [
-    loadImage("assets/blue-man-running1.png"),
-    loadImage("assets/blue-man-running2.png"),
-  ];
-  animationTopPlayerTwo = [
-    loadImage("assets/red-man-run1.png"),
-    loadImage("assets/red-man-run2.png"),
-  ];
-  animationTopHoldingPlayerOne = [
-    loadImage("assets/blue-man-running-carry1.png"),
-    loadImage("assets/blue-man-running-carry2.png"),
-  ];
-  animationTopHoldingPlayerTwo = [
-    loadImage("assets/red-man-run-carry1.png"),
-    loadImage("assets/red-man-run-carry2.png"),
-  ];
+  animationsPlayerOne = {
+    upp: [
+      loadImage("assets/blue-player/blue-upp1.png"),
+      loadImage("assets/blue-player/blue-upp2.png"),
+    ],
+    down: [
+      loadImage("assets/blue-player/blue-down1.png"),
+      loadImage("assets/blue-player/blue-down2.png"),
+    ],
+    right: [
+      loadImage("assets/blue-player/blue-right1.png"),
+      loadImage("assets/blue-player/blue-right2.png"),
+    ],
+    left: [
+      loadImage("assets/blue-player/blue-left1.png"),
+      loadImage("assets/blue-player/blue-left2.png"),
+    ],
+    uppCarry: [
+      loadImage("assets/blue-player/blue-upp-carry1.png"),
+      loadImage("assets/blue-player/blue-upp-carry2.png"),
+    ],
+    downCarry: [
+      loadImage("assets/blue-player/blue-down-carry1.png"),
+      loadImage("assets/blue-player/blue-down-carry2.png"),
+    ],
+    rightCarry: [
+      loadImage("assets/blue-player/blue-right-carry1.png"),
+      loadImage("assets/blue-player/blue-right-carry2.png"),
+    ],
+    leftCarry: [
+      loadImage("assets/blue-player/blue-left-carry1.png"),
+      loadImage("assets/blue-player/blue-left-carry2.png"),
+    ],
+  };
+  animationsPlayerTwo = {
+    upp: [
+      loadImage("assets/red-player/red-upp1.png"),
+      loadImage("assets/red-player/red-upp2.png"),
+    ],
+    down: [
+      loadImage("assets/red-player/red-down1.png"),
+      loadImage("assets/red-player/red-down2.png"),
+    ],
+    right: [
+      loadImage("assets/red-player/red-right1.png"),
+      loadImage("assets/red-player/red-right2.png"),
+    ],
+    left: [
+      loadImage("assets/red-player/red-left1.png"),
+      loadImage("assets/red-player/red-left2.png"),
+    ],
+    uppCarry: [
+      loadImage("assets/red-player/red-upp-carry1.png"),
+      loadImage("assets/red-player/red-upp-carry2.png"),
+    ],
+    downCarry: [
+      loadImage("assets/red-player/red-down-carry1.png"),
+      loadImage("assets/red-player/red-down-carry2.png"),
+    ],
+    rightCarry: [
+      loadImage("assets/red-player/red-right-carry1.png"),
+      loadImage("assets/red-player/red-right-carry2.png"),
+    ],
+    leftCarry: [
+      loadImage("assets/red-player/red-left-carry1.png"),
+      loadImage("assets/red-player/red-left-carry2.png"),
+    ],
+  };
 }
 
 window.preload = preload;
@@ -154,8 +206,8 @@ window.preload = preload;
 function setup() {
   let canvas = createCanvas(1280, 720);
   canvas.parent("container");
-  PlayerOne = new Player(400, 500, 68, 5, 65, 87, 83, 69, 69);
-  PlayerTwo = new Player(900, 500, 39, 5, 37, 38, 40, 13, 13);
+  PlayerOne = new Player(width / 2 - 200, 500, 68, 5, 65, 87, 83, 69, 69);
+  PlayerTwo = new Player(width / 2 + 125, 500, 39, 5, 37, 38, 40, 13, 13);
   Chest = new Basket(basketStartX, basketStartY);
 }
 window.setup = setup;
@@ -188,7 +240,7 @@ setInterval(() => {
   );
 }, 5000);
 
-plantSpawner(1500);
+plantSpawner(1400);
 
 function draw() {
   if (gameState == "start") {
@@ -219,16 +271,8 @@ function draw() {
     PlayerOne.movePlayer();
     PlayerOne.plantPickup(plants);
     PlayerTwo.plantPickup(plants);
-    PlayerOne.animatePlayer(
-      animationTopPlayerOne,
-      animationTopHoldingPlayerOne,
-      index
-    );
-    PlayerTwo.animatePlayer(
-      animationTopPlayerTwo,
-      animationTopHoldingPlayerTwo,
-      index
-    );
+    PlayerOne.animatePlayer(animationsPlayerOne, index);
+    PlayerTwo.animatePlayer(animationsPlayerTwo, index);
     PlayerOne.EscapeFromPrison();
     PlayerTwo.EscapeFromPrison();
 

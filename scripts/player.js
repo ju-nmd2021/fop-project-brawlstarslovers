@@ -27,12 +27,29 @@ class Player {
     this.isHoldingPlant = false;
     this.heldPlant;
     this.keyDrop = keyDrop;
+    this.direction = "upp";
   }
-  animatePlayer(runningFramesArray, holdingFramesArray, index) {
+  animatePlayer(animations, index) {
     if (!this.isHoldingPlant) {
-      image(runningFramesArray[index], this.playerX, this.playerY);
+      if (this.direction === "right") {
+        image(animations.right[index], this.playerX, this.playerY);
+      } else if (this.direction === "left") {
+        image(animations.left[index], this.playerX, this.playerY);
+      } else if (this.direction === "upp") {
+        image(animations.upp[index], this.playerX, this.playerY);
+      } else if (this.direction === "down") {
+        image(animations.down[index], this.playerX, this.playerY);
+      }
     } else if (this.isHoldingPlant) {
-      image(holdingFramesArray[index], this.playerX, this.playerY);
+      if (this.direction === "right") {
+        image(animations.rightCarry[index], this.playerX, this.playerY);
+      } else if (this.direction === "left") {
+        image(animations.leftCarry[index], this.playerX, this.playerY);
+      } else if (this.direction === "upp") {
+        image(animations.uppCarry[index], this.playerX, this.playerY);
+      } else if (this.direction === "down") {
+        image(animations.downCarry[index], this.playerX, this.playerY);
+      }
     }
 
     if (this.isHoldingPlant) {
@@ -46,15 +63,19 @@ class Player {
   movePlayer() {
     if (keyIsDown(this.keyRight)) {
       this.playerX += this.playerSpeed;
+      this.direction = "right";
     }
     if (keyIsDown(this.keyLeft)) {
       this.playerX -= this.playerSpeed;
+      this.direction = "left";
     }
     if (keyIsDown(this.keyTop)) {
       this.playerY -= this.playerSpeed;
+      this.direction = "upp";
     }
     if (keyIsDown(this.keyBottom)) {
       this.playerY += this.playerSpeed;
+      this.direction = "down";
     }
   }
   plantPickup(plants) {
