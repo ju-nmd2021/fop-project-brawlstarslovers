@@ -26,6 +26,9 @@ let tileSize = 60;
 let offsetX = (1280 - tilesX * tileSize) / 2;
 let offsetY = (720 - tilesY * tileSize) / 2;
 
+let basketStartX = 575;
+let basketStartY = 600;
+
 let grass;
 let randomX = Math.floor(Math.random() * (1000 - 100 + 1));
 let boostersList = ["prison", "speed", "booze", "teleport"];
@@ -153,7 +156,7 @@ function setup() {
   canvas.parent("container");
   PlayerOne = new Player(500, 500, 68, 5, 65, 87, 83, 69, 69);
   PlayerTwo = new Player(100, 100, 39, 5, 37, 38, 40, 13, 13);
-  Chest = new Basket(575, 600);
+  Chest = new Basket(basketStartX, basketStartY);
 }
 window.setup = setup;
 let index = 0;
@@ -222,8 +225,8 @@ function draw() {
     PlayerOne.EscapeFromPrison();
     PlayerTwo.EscapeFromPrison();
 
-    PlayerOne.putItemIntoBasket(575,600);
-    PlayerTwo.putItemIntoBasket(575,600);
+    PlayerOne.putItemIntoBasket(basketStartX,basketStartY);
+    PlayerTwo.putItemIntoBasket(basketStartX,basketStartY);
 
     PlayerOne.printScore('Blue guy score:', 100, 50);
     PlayerTwo.printScore('Red guy score:', 1000, 50);

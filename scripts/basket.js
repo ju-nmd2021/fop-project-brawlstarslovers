@@ -1,4 +1,4 @@
-class Basket{
+class Basket {
   constructor(x, y) {
     this.x = x;
     this.y = y;
