@@ -190,9 +190,12 @@ plantSpawner(1000);
 
 function draw() {
   if (gameState == "start") {
+    background("#214770");
     textSize(32);
-    text("Press ENTER to start the game", 420, 100);
-    text("Or scroll down to see some tips", 420, 160);
+    textStyle(ITALIC);
+    textAlign(CENTER);
+    text("Press ENTER to start the game", width / 2, height / 2 - 35);
+    text("Or scroll down to see some tips", width / 2, height / 2);
   }
   if (keyIsDown(13)) {
     gameState = "run";
@@ -223,7 +226,8 @@ function draw() {
     PlayerTwo.putItemIntoBasket(575,600);
 
     PlayerOne.printScore('Blue guy score:', 100, 50);
-    PlayerTwo.printScore('Red guy score:', 1000, 50); 
+    PlayerTwo.printScore('Red guy score:', 1000, 50);
+
 
     if (BoosterFruit) {
       BoosterFruit.createBooster();
@@ -238,6 +242,8 @@ function draw() {
         PlayerTwo
       );
     }
+
+
     
     // --
     // These two if's are responsible for  all animations
@@ -251,7 +257,28 @@ function draw() {
       index = 1;
     }
   }
+  if(PlayerOne.isWon()) {
+    setVictory("Blue Guy");
+  } else if (PlayerTwo.isWon()) setVictory('Red Guy');
   // --
 }
 
 window.draw = draw;
+
+function setVictory(player) {
+  gameState = "victory";
+  if (gameState == "victory") {
+    background("#214770");
+    textAlign(CENTER);
+    text(`${player} Won. Congratulations!`, width / 2, height / 2 - 50);
+    text("Press SPACE to continue", width / 2, height / 2);
+  }
+  
+  if (keyIsDown(32)) {
+    if ( gameState == "victory") {
+      PlayerOne.score = 0;
+      PlayerTwo.score = 0;
+      gameState = "start";
+    }
+    }
+}

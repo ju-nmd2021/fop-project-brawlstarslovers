@@ -121,6 +121,13 @@ class Player {
       textSize(32);
     text(`${sign} ${this.score}`, scoreX, scoreY);
   }
+
+  isWon() {
+    if (this.score >= 5) {
+      return true;
+    }
+  }
+
 }
 
 export { Player };
