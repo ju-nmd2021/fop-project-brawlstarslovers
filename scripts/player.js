@@ -9,7 +9,7 @@ class Player {
     keyTop,
     keyBottom,
     keyPickup,
-    keyDrop,
+    keyDrop
   ) {
     this.score = 0;
     this.spaceBarsCounter = 0;
@@ -31,12 +31,16 @@ class Player {
   animatePlayer(runningFramesArray, holdingFramesArray, index) {
     if (!this.isHoldingPlant) {
       image(runningFramesArray[index], this.playerX, this.playerY);
-    } else if(this.isHoldingPlant) {
+    } else if (this.isHoldingPlant) {
       image(holdingFramesArray[index], this.playerX, this.playerY);
     }
-    
+
     if (this.isHoldingPlant) {
-      image(this.heldPlant.plantImage, this.playerX + this.playerWidth / 6, this.playerY - this.playerWidth /3 );
+      image(
+        this.heldPlant.plantImage,
+        this.playerX + this.playerWidth / 6,
+        this.playerY - this.playerWidth / 3
+      );
       // console.log("plantHold is running");
     }
   }
@@ -73,12 +77,12 @@ class Player {
             this.playerY + this.playerWidth / 2 <=
               plants[i].plantY + plants[i].tileSize
           ) {
-            if(!this.heldPlant) {
-            this.heldPlant = plants[i];
-            console.log(this.heldPlant);
-            plants.splice(i, 1);
-            return true
-          }
+            if (!this.heldPlant) {
+              this.heldPlant = plants[i];
+              console.log(this.heldPlant);
+              plants.splice(i, 1);
+              return true;
+            }
           }
         }
       }
@@ -101,24 +105,26 @@ class Player {
       }
     }
   }
-  putItemIntoBasket(x, y) {
-    if ( this.playerX <= x + 40 && 
-      this.playerX >= x - 40 &&
-      this.playerY <= y + 40 &&
-      this.playerY >= y - 40 && 
+  putItemIntoBasket(basketX, basketY) {
+    if (
+      this.playerX + this.playerWidth / 2 <= basketX + 128 &&
+      this.playerX + this.playerWidth / 2 >= basketX &&
+      this.playerY + this.playerWidth / 2 <= basketY + 128 &&
+      this.playerY + this.playerWidth / 2 >= basketY &&
       this.heldPlant &&
-      keyIsDown(this.keyDrop)) {
-        this.score += this.heldPlant.pointValue;
-        this.heldPlant = false;
-        console.log(this.score + ' - score');
-        this.isHoldingPlant = false;
-      }
+      keyIsDown(this.keyDrop)
+    ) {
+      this.score += this.heldPlant.pointValue;
+      this.heldPlant = false;
+      console.log(this.score + " - score");
+      this.isHoldingPlant = false;
+    }
   }
   printScore(sign, scoreX, scoreY) {
     noStroke();
     textStyle(BOLD);
-      fill("white");
-      textSize(32);
+    fill("white");
+    textSize(32);
     text(`${sign} ${this.score}`, scoreX, scoreY);
   }
 }
