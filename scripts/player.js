@@ -38,7 +38,7 @@ class Player {
     if (this.isHoldingPlant) {
       image(
         this.heldPlant.plantImage,
-        this.playerX + this.playerWidth / 6,
+        this.playerX + this.playerWidth / 12,
         this.playerY - this.playerWidth / 3
       );
       // console.log("plantHold is running");
@@ -79,7 +79,7 @@ class Player {
           ) {
             if (!this.heldPlant) {
               this.heldPlant = plants[i];
-              console.log(this.heldPlant);
+              // console.log(this.heldPlant);
               plants.splice(i, 1);
               return true;
             }
