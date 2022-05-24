@@ -275,7 +275,11 @@ window.draw = draw;
 function setVictory(player) {
   gameState = "victory";
   if (gameState == "victory") {
-    background("#214770");
+    if (player == "Blue Guy") {
+      background("#214770");
+    } else {
+      background("#730a0a");
+    }
     textAlign(CENTER);
     text(`${player} Won. Congratulations!`, width / 2, height / 2 - 50);
     text("Press SPACE to continue", width / 2, height / 2);
