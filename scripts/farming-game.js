@@ -3,7 +3,7 @@ import { Garden } from "./garden.js";
 import { Booster } from "./booster.js";
 import { Plant } from "./plant.js";
 import { Basket } from "./basket.js";
-let gameState = "run";
+let gameState = "start";
 
 // Remove scroll on arrows
 window.addEventListener(
@@ -196,9 +196,9 @@ function draw() {
     background("#214770");
     textSize(32);
     textStyle(ITALIC);
-    textAlign(CENTER);
-    text("Press ENTER to start the game", width / 2, height / 2 - 35);
-    text("Or scroll down to see some tips", width / 2, height / 2);
+    fill('white');
+    text("Press ENTER to start the game", width / 2 - 240, height / 2 - 35);
+    text("Or scroll down to see some tips", width / 2 - 240, height / 2);
   }
   if (keyIsDown(13)) {
     gameState = "run";
@@ -282,6 +282,8 @@ function setVictory(player) {
       PlayerOne.score = 0;
       PlayerTwo.score = 0;
       gameState = "start";
+      plants = [];
+      location.reload();
     }
     }
 }
