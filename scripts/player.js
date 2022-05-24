@@ -38,7 +38,7 @@ class Player {
     if (this.isHoldingPlant) {
       image(
         this.heldPlant.plantImage,
-        this.playerX + this.playerWidth / 12,
+        this.playerX + 8,
         this.playerY - this.playerWidth / 3
       );
       // console.log("plantHold is running");
@@ -133,7 +133,6 @@ class Player {
       return true;
     }
   }
-
 }
 
 export { Player };

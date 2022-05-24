@@ -36,29 +36,30 @@ let priorBooster;
 let randomBoost;
 
 let plants = [];
-const plantTypes = [{
-  plantType: "potato",
-  pointValue: 5
-}, 
-{
-  plantType: "carrot",
-  pointValue: 10
-}, 
-{
-  plantType: "broccoli",
-  pointValue: 15
-}, 
-{
-  plantType: "tomato",
-  pointValue: 20
-}];
+const plantTypes = [
+  {
+    plantType: "potato",
+    pointValue: 5,
+  },
+  {
+    plantType: "carrot",
+    pointValue: 10,
+  },
+  {
+    plantType: "broccoli",
+    pointValue: 15,
+  },
+  {
+    plantType: "tomato",
+    pointValue: 20,
+  },
+];
 // let setPlantPos = [];
 let plantLimit = 20;
 let lowChance = 10;
 let midLowChance = 20;
 let midhighChance = 30;
 // let highChance = 40;
-
 
 function getRandomBooster() {
   while (randomBoost == priorBooster) {
@@ -89,7 +90,7 @@ function setRandomPlantPos() {
   return newPlantPos;
 }
 function getRandomPlant() {
-  const randomNumber = Math.ceil((Math.random() * 100));
+  const randomNumber = Math.ceil(Math.random() * 100);
   if (randomNumber > 100 - lowChance) {
     return plantTypes[3];
   } else if (randomNumber > 100 - midLowChance) {
@@ -99,7 +100,6 @@ function getRandomPlant() {
   } else {
     return plantTypes[0];
   }
-
 }
 
 function plantSpawner(spawnInterval) {
@@ -107,7 +107,7 @@ function plantSpawner(spawnInterval) {
     if (plants.length < plantLimit && gameState == "run") {
       const setPlantPos = setRandomPlantPos();
       const randomPlant = getRandomPlant();
-      
+
       plants.push(
         new Plant(
           randomPlant.plantType,
@@ -133,19 +133,19 @@ function preload() {
   // Initialization of all animations
   animationTopPlayerOne = [
     loadImage("assets/blue-man-running1.png"),
-    loadImage("assets/blue-man-running2.png")
+    loadImage("assets/blue-man-running2.png"),
   ];
   animationTopPlayerTwo = [
     loadImage("assets/red-man-run1.png"),
-    loadImage("assets/red-man-run2.png")
+    loadImage("assets/red-man-run2.png"),
   ];
   animationTopHoldingPlayerOne = [
     loadImage("assets/blue-man-running-carry1.png"),
-    loadImage("assets/blue-man-running-carry2.png")
+    loadImage("assets/blue-man-running-carry2.png"),
   ];
   animationTopHoldingPlayerTwo = [
     loadImage("assets/red-man-run-carry1.png"),
-    loadImage("assets/red-man-run-carry2.png")
+    loadImage("assets/red-man-run-carry2.png"),
   ];
 }
 
@@ -154,8 +154,8 @@ window.preload = preload;
 function setup() {
   let canvas = createCanvas(1280, 720);
   canvas.parent("container");
-  PlayerOne = new Player(500, 500, 68, 5, 65, 87, 83, 69, 69);
-  PlayerTwo = new Player(100, 100, 39, 5, 37, 38, 40, 13, 13);
+  PlayerOne = new Player(900, 500, 68, 5, 65, 87, 83, 69, 69);
+  PlayerTwo = new Player(400, 500, 39, 5, 37, 38, 40, 13, 13);
   Chest = new Basket(basketStartX, basketStartY);
 }
 window.setup = setup;
@@ -163,7 +163,6 @@ let index = 0;
 let PlayerOne;
 let PlayerTwo;
 let Chest;
-
 
 //------------------------------------------------------------playground plant
 
@@ -189,7 +188,7 @@ setInterval(() => {
   );
 }, 5000);
 
-plantSpawner(1000);
+plantSpawner(1500);
 
 function draw() {
   if (gameState == "start") {
@@ -220,17 +219,24 @@ function draw() {
     PlayerOne.movePlayer();
     PlayerOne.plantPickup(plants);
     PlayerTwo.plantPickup(plants);
-    PlayerOne.animatePlayer(animationTopPlayerOne,animationTopHoldingPlayerOne, index);
-    PlayerTwo.animatePlayer(animationTopPlayerTwo,animationTopHoldingPlayerTwo, index);
+    PlayerOne.animatePlayer(
+      animationTopPlayerOne,
+      animationTopHoldingPlayerOne,
+      index
+    );
+    PlayerTwo.animatePlayer(
+      animationTopPlayerTwo,
+      animationTopHoldingPlayerTwo,
+      index
+    );
     PlayerOne.EscapeFromPrison();
     PlayerTwo.EscapeFromPrison();
 
-    PlayerOne.putItemIntoBasket(basketStartX,basketStartY);
-    PlayerTwo.putItemIntoBasket(basketStartX,basketStartY);
+    PlayerOne.putItemIntoBasket(basketStartX, basketStartY);
+    PlayerTwo.putItemIntoBasket(basketStartX, basketStartY);
 
-    PlayerOne.printScore('Blue guy score:', 100, 50);
-    PlayerTwo.printScore('Red guy score:', 1000, 50);
-
+    PlayerOne.printScore("Blue guy score:", 100, 50);
+    PlayerTwo.printScore("Red guy score:", 1000, 50);
 
     if (BoosterFruit) {
       BoosterFruit.createBooster();
@@ -246,8 +252,6 @@ function draw() {
       );
     }
 
-
-    
     // --
     // These two if's are responsible for  all animations
     // Since we decided on having 2 frames for all animations, we can set global index (line 27)
@@ -260,9 +264,9 @@ function draw() {
       index = 1;
     }
   }
-  if(PlayerOne.isWon()) {
+  if (PlayerOne.isWon()) {
     setVictory("Blue Guy");
-  } else if (PlayerTwo.isWon()) setVictory('Red Guy');
+  } else if (PlayerTwo.isWon()) setVictory("Red Guy");
   // --
 }
 
@@ -276,12 +280,12 @@ function setVictory(player) {
     text(`${player} Won. Congratulations!`, width / 2, height / 2 - 50);
     text("Press SPACE to continue", width / 2, height / 2);
   }
-  
+
   if (keyIsDown(32)) {
-    if ( gameState == "victory") {
+    if (gameState == "victory") {
       PlayerOne.score = 0;
       PlayerTwo.score = 0;
       gameState = "start";
     }
-    }
+  }
 }
