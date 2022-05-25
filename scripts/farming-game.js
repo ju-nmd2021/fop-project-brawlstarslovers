@@ -277,8 +277,8 @@ function draw() {
     PlayerOne.putItemIntoBasket(basketStartX, basketStartY);
     PlayerTwo.putItemIntoBasket(basketStartX, basketStartY);
 
-    PlayerOne.printScore("Blue guy score:", 100, 50);
-    PlayerTwo.printScore("Red guy score:", 1000, 50);
+    PlayerOne.printScore("Blue guy score:", 100, height - 40);
+    PlayerTwo.printScore("Red guy score:", 1000, height - 40);
 
     if (BoosterFruit) {
       BoosterFruit.createBooster();
