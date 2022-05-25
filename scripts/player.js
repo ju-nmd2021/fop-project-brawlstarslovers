@@ -169,7 +169,7 @@ class Player {
     } else if (this.lastPointGain === 10) {
       strokeColor = 'orange';
     } else if (this.lastPointGain === 5) {
-      strokeColor = 'beige';
+      strokeColor = '#D9A066';
     }
     fill(strokeColor);
     text("+" + this.lastPointGain, this.playerX + 8, this.playerY);
