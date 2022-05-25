@@ -162,9 +162,9 @@ class Player {
     textSize(30);
     noStroke();
     let strokeColor;
-    if(this.lastPointGain == 20) {
+    if(this.lastPointGain === 20) {
       strokeColor = 'red';
-    } else if (this.lastPointGain == 15) {
+    } else if (this.lastPointGain === 15) {
       strokeColor = 'green';
     } else if (this.lastPointGain === 10) {
       strokeColor = 'orange';
