@@ -28,6 +28,8 @@ class Player {
     this.heldPlant;
     this.keyDrop = keyDrop;
     this.direction = "upp";
+    this.pickupAudio = new Audio("assets/audio/pop.mp3");
+    this.dropOffAudio = new Audio("assets/audio/hand-in.mp3");
   }
   animatePlayer(animations, index) {
     if (!this.isHoldingPlant) {
@@ -81,6 +83,7 @@ class Player {
   plantPickup(plants) {
     if (this.checkPosition(plants)) {
       this.isHoldingPlant = true;
+      this.pickupAudio.play();
     }
   }
   checkPosition(plants) {
@@ -137,6 +140,7 @@ class Player {
       this.score += this.heldPlant.pointValue;
       this.heldPlant = false;
       console.log(this.score + " - score");
+      this.dropOffAudio.play();
       this.isHoldingPlant = false;
     }
   }
