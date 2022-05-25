@@ -61,7 +61,7 @@ class Player {
       if (this.displayTime <= 40) {
         this.displayPointsEarned();
         this.displayTime++;
-      } else if (this.displayPoints > 40) {
+      } else if (this.displayTime > 40) {
         this.displayTime = 0;
         this.displayPoints = false;
       }
@@ -115,7 +115,6 @@ class Player {
           ) {
             if (!this.heldPlant) {
               this.heldPlant = plants[i];
-              // console.log(this.heldPlant);
               plants.splice(i, 1);
               return true;
             }
@@ -154,7 +153,6 @@ class Player {
       this.lastPointGain = this.heldPlant.pointValue;
       this.displayPoints = true;
       this.heldPlant = false;
-      console.log(this.score + " - score");
       this.dropOffAudio.play();
       this.isHoldingPlant = false;
     }
