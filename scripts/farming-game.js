@@ -5,7 +5,8 @@ import { Plant } from "./plant.js";
 import { Basket } from "./basket.js";
 let gameState = "start";
 
-// Remove scroll on arrows
+// Remove page scroll on arrows, because it interfers with game controls
+
 window.addEventListener(
   "keydown",
   function (e) {
@@ -54,15 +55,14 @@ const plantTypes = [
     pointValue: 20,
   },
 ];
-// let setPlantPos = [];
+
 let plantLimit = 20;
 let lowChance = 10;
 let midLowChance = 20;
 let midhighChance = 30;
-// let highChance = 40;
 
 function getRandomBooster() {
-  while (randomBoost == priorBooster) {
+  while (randomBoost === priorBooster) {
     randomBoost = boostersList[Math.floor(Math.random() * boostersList.length)];
   }
   priorBooster = randomBoost;
@@ -78,6 +78,7 @@ function randomTile() {
 
 function setRandomPlantPos() {
   let newPlantPos = randomTile();
+  // Loop over the plants array until you get the empty one
   for (let i = 0; i < plants.length; i++) {
     if (
       newPlantPos[0] === plants[i].plantX &&
@@ -104,7 +105,7 @@ function getRandomPlant() {
 
 function plantSpawner(spawnInterval) {
   setInterval(() => {
-    if (plants.length < plantLimit && gameState == "run") {
+    if (plants.length < plantLimit && gameState === "run") {
       const setPlantPos = setRandomPlantPos();
       const randomPlant = getRandomPlant();
 
@@ -214,19 +215,6 @@ let PlayerOne;
 let PlayerTwo;
 let Chest;
 
-//------------------------------------------------------------playground plant
-
-// setInterval(() => {
-//   testPlant.spawnTimer();
-// }, 3000);
-// plants[0].spawnTimer();
-// plants[1].spawnTimer();
-// for (let i = 0; i < plants.length; i++) {
-//   plants[i].spawnTimer();
-// }
-
-//-----------------------------------------------------------playground plant
-
 let BoosterFruit;
 setInterval(() => {
   BoosterFruit = new Booster(
@@ -241,7 +229,7 @@ setInterval(() => {
 plantSpawner(1400);
 
 function draw() {
-  if (gameState == "start") {
+  if (gameState === "start") {
     background("#214770");
     textSize(32);
     textStyle(ITALIC);
@@ -294,30 +282,28 @@ function draw() {
       );
     }
 
-    // --
     // These two if's are responsible for  all animations
     // Since we decided on having 2 frames for all animations, we can set global index (line 27)
-    // And then change it twice a frame (this if what following if statemnts do)
+    // And then change it twice a second
 
-    if (frameCount % 15 == 0) {
+    if (frameCount % 15 === 0) {
       index = 0;
     }
-    if (frameCount % 30 == 0) {
+    if (frameCount % 30 === 0) {
       index = 1;
     }
   }
   if (PlayerOne.isWon()) {
     setVictory("Blue Guy");
   } else if (PlayerTwo.isWon()) setVictory("Red Guy");
-  // --
 }
 
 window.draw = draw;
 
 function setVictory(player) {
   gameState = "victory";
-  if (gameState == "victory") {
-    if (player == "Blue Guy") {
+  if (gameState === "victory") {
+    if (player === "Blue Guy") {
       background("#214770");
     } else {
       background("#730a0a");
@@ -328,7 +314,7 @@ function setVictory(player) {
   }
 
   if (keyIsDown(32)) {
-    if (gameState == "victory") {
+    if (gameState === "victory") {
       PlayerOne.score = 0;
       PlayerTwo.score = 0;
       gameState = "start";

@@ -1,5 +1,4 @@
 class Player {
-  // Constructor receives arguments from created instances of classes (line 33 and line 44 of farming-game.js)
   constructor(
     playerX,
     playerY,
@@ -58,10 +57,11 @@ class Player {
     }
 
     if (this.displayPoints) {
-      if (this.displayTime <= 40) {
+      let displayPointsDuration = 40;
+      if (this.displayTime <= displayPointsDuration) {
         this.displayPointsEarned();
         this.displayTime++;
-      } else if (this.displayTime > 40) {
+      } else if (this.displayTime > displayPointsDuration) {
         this.displayTime = 0;
         this.displayPoints = false;
       }
@@ -126,6 +126,7 @@ class Player {
   EscapeFromPrison() {
     if (this.isImprisoned === true) {
       textStyle(BOLD);
+      stroke("blue");
       fill("white");
       textSize(32);
       text("You are imprisoned! Smash SPACEBAR to escape!", 260, 700);
@@ -159,7 +160,18 @@ class Player {
   }
   displayPointsEarned() {
     textSize(30);
-    fill(255);
+    noStroke();
+    let strokeColor;
+    if(this.lastPointGain == 20) {
+      strokeColor = 'red';
+    } else if (this.lastPointGain == 15) {
+      strokeColor = 'green';
+    } else if (this.lastPointGain === 10) {
+      strokeColor = 'orange';
+    } else if (this.lastPointGain === 5) {
+      strokeColor = 'beige';
+    }
+    fill(strokeColor);
     text("+" + this.lastPointGain, this.playerX + 8, this.playerY);
   }
   printScore(sign, scoreX, scoreY) {
