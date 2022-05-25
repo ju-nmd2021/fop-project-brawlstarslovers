@@ -158,9 +158,9 @@ class Player {
     }
   }
   displayPointsEarned() {
-    textSize(32);
+    textSize(30);
     fill(255);
-    text(this.lastPointGain, this.playerX, this.playerY);
+    text("+" + this.lastPointGain, this.playerX + 8, this.playerY);
   }
   printScore(sign, scoreX, scoreY) {
     noStroke();
