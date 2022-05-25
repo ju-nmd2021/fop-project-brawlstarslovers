@@ -60,6 +60,7 @@ body {
   width: 100%;
 }
 
-.controls {
+.tips__controls,
+.tips__point-values {
   margin-bottom: 50px;
 }
