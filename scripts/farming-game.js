@@ -125,8 +125,6 @@ function plantSpawner(spawnInterval) {
 
 let animationsPlayerOne;
 let animationsPlayerTwo;
-let animationTopHoldingPlayerOne;
-let animationTopHoldingPlayerTwo;
 
 function preload() {
   grass = loadImage("assets/grass2.png");

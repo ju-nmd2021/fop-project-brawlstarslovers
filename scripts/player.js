@@ -30,6 +30,9 @@ class Player {
     this.direction = "upp";
     this.pickupAudio = new Audio("assets/audio/pop.mp3");
     this.dropOffAudio = new Audio("assets/audio/hand-in.mp3");
+    this.displayPoints = false;
+    this.lastPointGain;
+    this.displayTime = 0;
   }
   animatePlayer(animations, index) {
     if (!this.isHoldingPlant) {
@@ -51,6 +54,16 @@ class Player {
         image(animations.uppCarry[index], this.playerX, this.playerY);
       } else if (this.direction === "down") {
         image(animations.downCarry[index], this.playerX, this.playerY);
+      }
+    }
+
+    if (this.displayPoints) {
+      if (this.displayTime <= 40) {
+        this.displayPointsEarned();
+        this.displayTime++;
+      } else if (this.displayPoints > 40) {
+        this.displayTime = 0;
+        this.displayPoints = false;
       }
     }
 
@@ -138,11 +151,18 @@ class Player {
       keyIsDown(this.keyDrop)
     ) {
       this.score += this.heldPlant.pointValue;
+      this.lastPointGain = this.heldPlant.pointValue;
+      this.displayPoints = true;
       this.heldPlant = false;
       console.log(this.score + " - score");
       this.dropOffAudio.play();
       this.isHoldingPlant = false;
     }
+  }
+  displayPointsEarned() {
+    textSize(32);
+    fill(255);
+    text(this.lastPointGain, this.playerX, this.playerY);
   }
   printScore(sign, scoreX, scoreY) {
     noStroke();
