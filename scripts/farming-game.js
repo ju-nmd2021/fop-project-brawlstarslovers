@@ -31,6 +31,9 @@ let basketStartX = 575;
 let basketStartY = 600;
 
 let grass;
+let redWinGraphic;
+let blueWinGraphic;
+
 let randomX = Math.floor(Math.random() * (1000 - 100 + 1));
 let boostersList = ["prison", "speed", "booze", "teleport"];
 let priorBooster;
@@ -127,6 +130,8 @@ let animationsPlayerTwo;
 
 function preload() {
   grass = loadImage("assets/grass2.png");
+  redWinGraphic = loadImage("assets/red-win.png");
+  blueWinGraphic = loadImage("assets/blue-win.png");
   // Initialization of all animations
   animationsPlayerOne = {
     upp: [
@@ -303,8 +308,10 @@ function setVictory(player) {
   if (gameState === "victory") {
     if (player === "Blue Guy") {
       background("#214770");
+      image(blueWinGraphic, 0, 0);
     } else {
       background("#730a0a");
+      image(redWinGraphic, 0, 0);
     }
     textAlign(CENTER);
     text(`${player} Won. Congratulations!`, width / 2, height / 2 - 50);
