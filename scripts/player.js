@@ -160,16 +160,17 @@ class Player {
   }
   displayPointsEarned() {
     textSize(30);
-    noStroke();
+    stroke("black");
+    strokeWeight(4);
     let strokeColor;
-    if(this.lastPointGain === 20) {
-      strokeColor = 'red';
+    if (this.lastPointGain === 20) {
+      strokeColor = "red";
     } else if (this.lastPointGain === 15) {
-      strokeColor = 'green';
+      strokeColor = "green";
     } else if (this.lastPointGain === 10) {
-      strokeColor = 'orange';
+      strokeColor = "orange";
     } else if (this.lastPointGain === 5) {
-      strokeColor = '#D9A066';
+      strokeColor = "#D9A066";
     }
     fill(strokeColor);
     text("+" + this.lastPointGain, this.playerX + 8, this.playerY);
@@ -177,6 +178,8 @@ class Player {
   printScore(sign, scoreX, scoreY) {
     noStroke();
     textStyle(BOLD);
+    strokeWeight(4);
+    stroke(0);
     fill("white");
     textSize(32);
     text(`${sign} ${this.score}`, scoreX, scoreY);
