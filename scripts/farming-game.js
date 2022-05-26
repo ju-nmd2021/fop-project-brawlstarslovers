@@ -57,9 +57,6 @@ const plantTypes = [
 ];
 
 let plantLimit = 20;
-let lowChance = 10;
-let midLowChance = 20;
-let midhighChance = 30;
 
 function getRandomBooster() {
   while (randomBoost === priorBooster) {
@@ -90,13 +87,14 @@ function setRandomPlantPos() {
   }
   return newPlantPos;
 }
+
 function getRandomPlant() {
   const randomNumber = Math.ceil(Math.random() * 100);
-  if (randomNumber > 100 - lowChance) {
+  if (randomNumber <= 10) {
     return plantTypes[3];
-  } else if (randomNumber > 100 - midLowChance) {
+  } else if (randomNumber <= 20) {
     return plantTypes[2];
-  } else if (randomNumber > 100 - midhighChance) {
+  } else if (randomNumber <= 30) {
     return plantTypes[1];
   } else {
     return plantTypes[0];
