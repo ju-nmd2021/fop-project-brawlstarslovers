@@ -186,7 +186,8 @@ class Player {
   }
 
   isWon() {
-    if (this.score >= 60) {
+    // Winning Score
+    if (this.score >= 80) {
       return true;
     }
   }
