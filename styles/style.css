@@ -1,0 +1,66 @@
+#container {
+  display: block;
+}
+#container canvas {
+  max-width: 1280px;
+  max-height: 720px;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 255, 0.5);
+}
+
+.tips {
+  align-self: start;
+  margin-top: 30px;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tips__title {
+  color: white;
+  width: 780px;
+  text-align: center;
+  font-size: 42px;
+  font-family: Arial, sans-serif;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.tips__subtitle {
+  color: aliceblue;
+  font-weight: 600;
+  font-size: 36px;
+  font-family: Arial, sans-serif;
+  margin-bottom: 15px;
+}
+
+.tips__tip-description {
+  font-size: 24px;
+  font-family: Arial, sans-serif;
+}
+.tips__tip {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  background: white;
+  border-radius: 25px;
+  padding: 15px 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.tips__tip-image {
+  max-width: 60px;
+  height: 60px;
+  width: 100%;
+}
+
+.tips__controls,
+.tips__point-values {
+  margin-bottom: 50px;
+}

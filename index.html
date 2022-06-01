@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fight and farm</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/normalize.css" />
+    <script type="module" src="scripts/p5.min.js"></script>
+
+    <!-- Fix for audio bug -->
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <div class="" id="container"></div>
+    <div class="tips">
+      <h1 class="tips__title">Some tips</h1>
+      <div class="tips__container">
+        <h2 class="tips__subtitle">Controls</h2>
+        <img src="assets/game-controls.svg" alt="" class="tips__controls" />
+        <h2 class="tips__subtitle">Point Values</h2>
+        <img src="assets/point-values.svg" alt="" class="tips__point-values" />
+        <h2 class="tips__subtitle">Boosters</h2>
+        <div class="tips__tip">
+          <img src="assets/star.png" alt="" class="tips__tip-image" />
+          <h3 class="tips__tip-description">Jail: Imprison your enemy</h3>
+        </div>
+        <div class="tips__tip">
+          <img src="assets/booze.png" alt="" class="tips__tip-image" />
+          <h3 class="tips__tip-description">
+            Booze: Reverse controls of the enemy
+          </h3>
+        </div>
+        <div class="tips__tip">
+          <img src="assets/speed.png" alt="" class="tips__tip-image" />
+          <h3 class="tips__tip-description">
+            Fancy shoe: Your speed is increased
+          </h3>
+        </div>
+        <div class="tips__tip">
+          <img src="assets/teleport.png" alt="" class="tips__tip-image" />
+          <h3 class="tips__tip-description">
+            Strange mushroom: Teleports your enemy to a random place
+          </h3>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="scripts/farming-game.js"></script>
+  </body>
+</html>
